@@ -145,6 +145,18 @@ SELECT id FROM flights WHERE origin_airport_id= (SELECT id FROM airports WHERE c
 --WE FIND
 --The thief escaped fiftyville in flight_id=36
 
+--To find where the thief escaped to
+SELECT full_name, city FROM airports WHERE id = (
+    SELECT destination_airport_id FROM flights WHERE id = 36
+);
+--We find
+/*
++-------------------+---------------+
+|     full_name     |     city      |
++-------------------+---------------+
+| LaGuardia Airport | New York City |
++-------------------+---------------+
+*/
 
 --Lets get all of the people in this flight.
 SELECT name FROM people WHERE passport_number IN (
@@ -193,4 +205,10 @@ SELECT name FROM people WHERE phone_number IN (
 | Robin |
 +-------+
 Thus, Robin is the accomplice
+*/
+
+/*
+The THIEF is: Bruce
+The city the thief ESCAPED TO: New York City (LaGuardia Airport)
+The ACCOMPLICE is: Robin
 */
